@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Henry Marble — GTM Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0e0e0e;
+    --bg-card: #161616;
+    --bg-hover: #1e1e1e;
+    --border: #2a2a2a;
+    --border-hover: #3d3d3d;
+    --text-primary: #e8e6df;
+    --text-secondary: #888880;
+    --text-muted: #4a4a47;
+    --accent: #c8f04e;
+    --accent-dim: #8aaa2e;
+    --tag-bg: #1e2a0e;
+    --tag-text: #a8d042;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  ::selection { background: var(--accent); color: #0e0e0e; }
+
+  /* ── layout ── */
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── nav ── */
+  nav {
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    background: rgba(14,14,14,0.95);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+  }
+
+  nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-name {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .nav-name span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    transition: color 0.15s;
+  }
+
+  .nav-links a:hover { color: var(--text-primary); }
+
+  /* ── hero ── */
+  .hero {
+    padding: 80px 0 64px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--accent-dim);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .hero-bio {
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    max-width: 560px;
+    margin-bottom: 32px;
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .meta-chip {
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--text-secondary);
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    padding: 9px 18px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #0e0e0e;
+    font-weight: 600;
+    border: 1px solid var(--accent);
+  }
+
+  .btn-primary:hover { background: #d9ff60; }
+
+  .btn-ghost {
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    background: transparent;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+  }
+
+  /* ── section ── */
+  section { padding: 60px 0; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--accent-dim);
+    text-transform: uppercase;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── project cards ── */
+  .projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .project-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 28px;
+    transition: border-color 0.15s, background 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+
+  .project-card:hover {
+    border-color: var(--border-hover);
+    background: var(--bg-hover);
+  }
+
+  .project-card:hover::before { opacity: 1; }
+
+  .project-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .project-title {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+  }
+
+  .project-status {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .status-live { background: #0e2a0e; color: #5ada5a; border: 1px solid #1a4a1a; }
+  .status-beta { background: #1a1a0a; color: #c8a032; border: 1px solid #2a2a12; }
+  .status-wip  { background: #1a0e0e; color: #c05050; border: 1px solid #2a1a1a; }
+
+  .project-desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+  }
+
+  .project-what {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    line-height: 1.6;
+  }
+
+  .project-what strong {
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+
+  .tag {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    padding: 3px 8px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    border-radius: 2px;
+    border: 1px solid #2a3a10;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 12px;
+  }
+
+  .project-link {
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .project-link:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ── skills / stack ── */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+  }
+
+  .stack-group {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px 18px;
+  }
+
+  .stack-group-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--accent-dim);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .stack-items {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .stack-item {
+    font-size: 12px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .stack-item::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--border-hover);
+    flex-shrink: 0;
+  }
+
+  /* ── about ── */
+  .about-body {
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--text-secondary);
+    max-width: 620px;
+  }
+
+  .about-body p { margin-bottom: 16px; }
+  .about-body p:last-child { margin-bottom: 0; }
+
+  .about-body a {
+    color: var(--accent-dim);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .about-body a:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ── contact ── */
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ── footer ── */
+  footer {
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-text {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .footer-text span { color: var(--text-secondary); }
+
+  /* ── responsive ── */
+  @media (max-width: 520px) {
+    .nav-links { display: none; }
+    .hero { padding: 56px 0 48px; }
+    .stack-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a class="nav-name" href="#">hm<span>_</span></a>
+    <ul class="nav-links">
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#stack">stack</a></li>
+      <li><a href="#about">about</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <div class="container">
+
+    <!-- HERO -->
+    <div class="hero">
+      <p class="hero-label">// gtm engineer · san francisco</p>
+      <h1>Henry Marble.<br>I build the systems<br>behind <em>GTM motions.</em></h1>
+      <p class="hero-bio">
+        5+ years living inside outbound sales — Cloudflare, Pave. I know where the CRM breaks, why leads go cold, and how bad routing kills pipeline. Now I build the tooling to fix it.
+      </p>
+      <div class="hero-meta">
+        <span class="meta-chip">Salesforce</span>
+        <span class="meta-chip">Apex</span>
+        <span class="meta-chip">Flow Builder</span>
+        <span class="meta-chip">SQL</span>
+        <span class="meta-chip">Python / Pandas</span>
+        <span class="meta-chip">iOS / Swift</span>
+      </div>
+      <div class="hero-links">
+        <a class="btn btn-primary" href="https://github.com/mindofhenry" target="_blank">→ GitHub</a>
+        <a class="btn btn-ghost" href="https://linkedin.com/in/henry-marble" target="_blank">LinkedIn</a>
+        <a class="btn btn-ghost" href="mailto:hhmarble@gmail.com">Email</a>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-header">
+        <span class="section-label">// projects</span>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- PROJECT 1: DOOM Inc SFDC -->
+        <div class="project-card">
+          <div class="project-top">
+            <span class="project-title">DOOM Inc — Salesforce GTM Org</span>
+            <span class="project-status status-live">live</span>
+          </div>
+          <p class="project-desc">
+            Full Salesforce DX build simulating the RevOps infrastructure of a fictional Series B security SaaS. Custom data model, lead routing, SLA enforcement, and operational reporting — the kind of system a GTM Engineer would own on day one.
+          </p>
+          <p class="project-what">
+            <strong>What's built:</strong> 7 custom Lead fields · 6-rule routing chain · Tier 1 SLA breach Flow · post-conversion Apex trigger · 4 reports · GTM Ops dashboard · permission set
+          </p>
+          <div class="project-tags">
+            <span class="tag">Apex</span>
+            <span class="tag">Flow Builder</span>
+            <span class="tag">SOQL</span>
+            <span class="tag">SFDX</span>
+            <span class="tag">Lead Routing</span>
+            <span class="tag">SLA Automation</span>
+          </div>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/mindofhenry/doom-inc-sfdc" target="_blank">→ github</a>
+          </div>
+        </div>
+
+        <!-- PROJECT 2: Kitchi -->
+        <div class="project-card">
+          <div class="project-top">
+            <span class="project-title">Kitchi — Food Waste App</span>
+            <span class="project-status status-beta">testflight</span>
+          </div>
+          <p class="project-desc">
+            iOS app that tracks what's in your kitchen, surfaces what's about to expire, and turns it into meals. Built to solve a real personal problem: throwing away food and money every week.
+          </p>
+          <p class="project-what">
+            <strong>Status:</strong> Live on TestFlight · not yet in public beta
+          </p>
+          <div class="project-tags">
+            <span class="tag">iOS</span>
+            <span class="tag">Swift</span>
+            <span class="tag">Product</span>
+          </div>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/mindofhenry" target="_blank">→ github</a>
+          </div>
+        </div>
+
+        <!-- ADD MORE PROJECTS BELOW — copy the block above and edit -->
+
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <section id="stack">
+      <div class="section-header">
+        <span class="section-label">// stack</span>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="stack-grid">
+        <div class="stack-group">
+          <p class="stack-group-label">CRM / GTM</p>
+          <div class="stack-items">
+            <span class="stack-item">Salesforce</span>
+            <span class="stack-item">Outreach</span>
+            <span class="stack-item">ZoomInfo</span>
+            <span class="stack-item">Cognism</span>
+            <span class="stack-item">LinkedIn Sales Nav</span>
+            <span class="stack-item">Pocus</span>
+          </div>
+        </div>
+        <div class="stack-group">
+          <p class="stack-group-label">Code / Data</p>
+          <div class="stack-items">
+            <span class="stack-item">Apex (SFDC)</span>
+            <span class="stack-item">SOQL</span>
+            <span class="stack-item">SQL</span>
+            <span class="stack-item">Python</span>
+            <span class="stack-item">Pandas</span>
+          </div>
+        </div>
+        <div class="stack-group">
+          <p class="stack-group-label">Automation</p>
+          <div class="stack-items">
+            <span class="stack-item">Flow Builder</span>
+            <span class="stack-item">Assignment Rules</span>
+            <span class="stack-item">Apex Triggers</span>
+          </div>
+        </div>
+        <div class="stack-group">
+          <p class="stack-group-label">Dev Tools</p>
+          <div class="stack-items">
+            <span class="stack-item">SFDX / SF CLI</span>
+            <span class="stack-item">VS Code</span>
+            <span class="stack-item">Git / GitHub</span>
+            <span class="stack-item">Swift / iOS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-header">
+        <span class="section-label">// about</span>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="about-body">
+        <p>
+          I've spent 5+ years working inside GTM motions — Cloudflare BDR, Pave SDR. Sequences, CRM hygiene, pipeline data, tool sprawl. I know where the systems break because I've felt it firsthand: leads routed to the wrong rep, Tier 1 inbounds sitting cold for hours, no visibility into queue depth, conversion with zero handoff.
+        </p>
+        <p>
+          I'm building the technical skills to fix that. Currently working through Salesforce development, GTM systems design, and shipping my own app on the side.
+        </p>
+        <p>
+          UC Berkeley, Anthropology. UCLA Extension, Cybersecurity Boot Camp.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-header">
+        <span class="section-label">// contact</span>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:hhmarble@gmail.com">→ hhmarble@gmail.com</a>
+        <a class="btn btn-ghost" href="https://linkedin.com/in/henry-marble" target="_blank">LinkedIn</a>
+        <a class="btn btn-ghost" href="https://github.com/mindofhenry" target="_blank">GitHub</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p class="footer-text">Henry Marble — <span>GTM Engineer</span></p>
+    <p class="footer-text">San Francisco, CA</p>
+  </div>
+</footer>
+
+</body>
+</html>
