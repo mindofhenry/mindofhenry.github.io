@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Henry Marble — GTM Engineer</title>
+<title>henry marble - gtm engineer</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='4' y='76' font-family='monospace' font-size='52' font-weight='600' fill='%23e8e6df'>hm</text><rect x='72' y='78' width='18' height='7' fill='%23c8f04e'/></svg>">
+<meta property="og:title" content="henry marble — gtm engineer" />
+<meta property="og:description" content="Building the systems behind GTM motions." />
+<meta property="og:image" content="https://mindofhenry.github.io/og-image.png" />
+<meta property="og:url" content="https://mindofhenry.github.io" />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet" />
 <style>
@@ -336,7 +342,7 @@
   /* ── skills / stack ── */
   .stack-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: 12px;
   }
 
@@ -471,7 +477,8 @@
       <div class="hero-links">
         <a class="btn btn-primary" href="https://github.com/mindofhenry" target="_blank">→ GitHub</a>
         <a class="btn btn-ghost" href="https://linkedin.com/in/henry-marble" target="_blank">LinkedIn</a>
-        <a class="btn btn-ghost" href="/cdn-cgi/l/email-protection#274f4f4a4655454b4267404a464e4b0944484a">Email</a>
+        <a class="btn btn-ghost" href="mailto:hhmarble@gmail.com">Email</a>
+        <a class="btn btn-ghost" href="https://calendar.app.google/1EKwg4TZBPZiDhu4A" target="_blank">Book time</a>
       </div>
     </div>
 
@@ -491,19 +498,24 @@
             <span class="project-status status-live">live</span>
           </div>
           <p class="project-desc">
-            MCP server that gives GTM reps instant access to product knowledge, objection handling, and competitive positioning — from wherever they already work. Built on the insight that the server is the product: build once, connect anywhere (Claude Desktop, Slack, any MCP-compatible client).
+            MCP server that gives GTM reps instant access to product knowledge, objection handling, and competitive positioning — from wherever they already work. The core insight: the server is the product, the interfaces are just wrappers. Build once, connect anywhere.
           </p>
           <p class="project-what">
-            <strong>What's built:</strong> FastMCP server with <code>ask_product</code> tool · curated PostHog knowledge base (objections, competitors, personas, pricing) · <code>ingest.py</code> to rebuild KB from any public GitHub repo · Slack bot via Socket Mode (<code>/beacon</code> slash command + <code>@Beacon</code> mention)
+            <strong>What's built:</strong> FastMCP server with <code>ask_product</code> tool · curated PostHog knowledge base (objections, competitors, personas, pricing, Hex dashboards) · <code>llm.py</code> provider abstraction (Anthropic, OpenAI, Gemini) · <code>ingest.py</code> to rebuild KB from any public GitHub repo · channel-native Slack bot (<code>#ask-beacon</code>, gap logging to <code>#beacon-gaps</code> + Notion) · Railway / Docker / AWS / GCP / Azure deployment configs
           </p>
           <div class="project-tags">
             <span class="tag">Python</span>
-            <span class="tag">MCP</span>
-            <span class="tag">FastMCP</span>
+            <span class="tag">MCP / FastMCP</span>
             <span class="tag">Slack API</span>
             <span class="tag">Claude API</span>
+            <span class="tag">OpenAI</span>
+            <span class="tag">Gemini</span>
+            <span class="tag">Notion API</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Railway</span>
             <span class="tag">GTM Enablement</span>
           </div>
+
           <div class="project-links">
             <a class="project-link" href="https://github.com/mindofhenry/beacon" target="_blank">→ github</a>
           </div>
@@ -516,18 +528,18 @@
             <span class="project-status status-live">live</span>
           </div>
           <p class="project-desc">
-            Full Salesforce DX build simulating the RevOps infrastructure of a fictional Series B security SaaS. Custom data model, lead routing, SLA enforcement, and operational reporting — the kind of system a GTM Engineer would own on day one.
+            Full Salesforce build simulating the RevOps infrastructure of a fictional Series B security SaaS. Custom data model, lead routing, SLA enforcement, and operational reporting — the kind of system a GTM Engineer would own on day one.
           </p>
           <p class="project-what">
-            <strong>What's built:</strong> 7 custom Lead fields · 6-rule routing chain · Tier 1 SLA breach Flow · post-conversion Apex trigger · 4 reports · GTM Ops dashboard · permission set
+            <strong>What's built:</strong> 7 custom Lead fields · 6-rule routing chain (segment + persona → rep or queue) · Tier 1 SLA breach Flow · post-conversion Apex trigger with test coverage · 4 operational reports · GTM Ops dashboard · scoped permission set
           </p>
           <div class="project-tags">
             <span class="tag">Apex</span>
             <span class="tag">Flow Builder</span>
             <span class="tag">SOQL</span>
-            <span class="tag">SFDX</span>
             <span class="tag">Lead Routing</span>
             <span class="tag">SLA Automation</span>
+            <span class="tag">Salesforce</span>
           </div>
           <div class="project-links">
             <a class="project-link" href="https://github.com/mindofhenry/doom-inc-sfdc" target="_blank">→ github</a>
@@ -576,10 +588,14 @@
           <div class="stack-items">
             <span class="stack-item">Salesforce</span>
             <span class="stack-item">Outreach</span>
+            <span class="stack-item">Salesloft</span>
+            <span class="stack-item">Nooks</span>
+            <span class="stack-item">Clay</span>
             <span class="stack-item">ZoomInfo</span>
             <span class="stack-item">Cognism</span>
             <span class="stack-item">LinkedIn Sales Nav</span>
             <span class="stack-item">Pocus</span>
+            <span class="stack-item">Marketo</span>
           </div>
         </div>
         <div class="stack-group">
@@ -590,6 +606,8 @@
             <span class="stack-item">SQL</span>
             <span class="stack-item">Python</span>
             <span class="stack-item">Pandas</span>
+            <span class="stack-item">Next.js</span>
+            <span class="stack-item">TypeScript</span>
           </div>
         </div>
         <div class="stack-group">
@@ -599,15 +617,21 @@
             <span class="stack-item">Assignment Rules</span>
             <span class="stack-item">Apex Triggers</span>
             <span class="stack-item">MCP (Model Context Protocol)</span>
+            <span class="stack-item">n8n</span>
+            <span class="stack-item">Zapier</span>
           </div>
         </div>
         <div class="stack-group">
           <p class="stack-group-label">Dev Tools</p>
           <div class="stack-items">
-            <span class="stack-item">SFDX / SF CLI</span>
+            <span class="stack-item">SF CLI</span>
             <span class="stack-item">VS Code</span>
             <span class="stack-item">Git / GitHub</span>
             <span class="stack-item">Swift / iOS</span>
+            <span class="stack-item">Claude Code</span>
+            <span class="stack-item">OpenCode</span>
+            <span class="stack-item">Ollama</span>
+            <span class="stack-item">Qwen</span>
           </div>
         </div>
       </div>
@@ -641,9 +665,10 @@
       </div>
 
       <div class="contact-links">
-        <a class="btn btn-primary" href="/cdn-cgi/l/email-protection#7b1313161a0919171e3b1c161a121755181416">→ <span class="__cf_email__" data-cfemail="78101015190a1a141d381f15191114561b1715">[email&#160;protected]</span></a>
+        <a class="btn btn-primary" href="mailto:hhmarble@gmail.com">→ hhmarble@gmail.com</a>
         <a class="btn btn-ghost" href="https://linkedin.com/in/henry-marble" target="_blank">LinkedIn</a>
         <a class="btn btn-ghost" href="https://github.com/mindofhenry" target="_blank">GitHub</a>
+        <a class="btn btn-ghost" href="https://calendar.app.google/1EKwg4TZBPZiDhu4A" target="_blank">Book time</a>
       </div>
     </section>
 
