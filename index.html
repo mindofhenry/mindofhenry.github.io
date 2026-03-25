@@ -2,13 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta property="og:title" content="Henry Marble — GTM Engineer" />
-<meta property="og:description" content="Building the systems behind GTM motions." />
-<meta property="og:image" content="https://mindofhenry.github.io/og-image.png" />
-<meta property="og:url" content="https://mindofhenry.github.io" />
-<meta name="twitter:card" content="summary_large_image" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='4' y='76' font-family='monospace' font-size='52' font-weight='600' fill='%23e8e6df'>hm</text><rect x='72' y='78' width='18' height='7' fill='%23c8f04e'/></svg>">
 <title>Henry Marble — GTM Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet" />
@@ -296,6 +290,15 @@
     font-weight: 500;
   }
 
+  .project-what code {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent-dim);
+    background: #1a1a1a;
+    padding: 1px 5px;
+    border-radius: 2px;
+  }
+
   .project-tags {
     display: flex;
     flex-wrap: wrap;
@@ -481,14 +484,39 @@
 
       <div class="projects-grid">
 
-        <!-- PROJECT 1: DOOM Inc SFDC -->
+        <!-- PROJECT 1: Beacon -->
+        <div class="project-card">
+          <div class="project-top">
+            <span class="project-title">Beacon — Rep Intelligence MCP Server</span>
+            <span class="project-status status-live">live</span>
+          </div>
+          <p class="project-desc">
+            MCP server that gives GTM reps instant access to product knowledge, objection handling, and competitive positioning — from wherever they already work. Built on the insight that the server is the product: build once, connect anywhere (Claude Desktop, Slack, any MCP-compatible client).
+          </p>
+          <p class="project-what">
+            <strong>What's built:</strong> FastMCP server with <code>ask_product</code> tool · curated PostHog knowledge base (objections, competitors, personas, pricing) · <code>ingest.py</code> to rebuild KB from any public GitHub repo · Slack bot via Socket Mode (<code>/beacon</code> slash command + <code>@Beacon</code> mention)
+          </p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">MCP</span>
+            <span class="tag">FastMCP</span>
+            <span class="tag">Slack API</span>
+            <span class="tag">Claude API</span>
+            <span class="tag">GTM Enablement</span>
+          </div>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/mindofhenry/beacon" target="_blank">→ github</a>
+          </div>
+        </div>
+
+        <!-- PROJECT 2: DOOM Inc SFDC -->
         <div class="project-card">
           <div class="project-top">
             <span class="project-title">DOOM Inc — Salesforce GTM Org</span>
             <span class="project-status status-live">live</span>
           </div>
           <p class="project-desc">
-            Full Salesforce build simulating the RevOps infrastructure of a fictional Series B security SaaS. Custom data model, lead routing, SLA enforcement, and operational reporting — the kind of system a GTM Engineer would own on day one.
+            Full Salesforce DX build simulating the RevOps infrastructure of a fictional Series B security SaaS. Custom data model, lead routing, SLA enforcement, and operational reporting — the kind of system a GTM Engineer would own on day one.
           </p>
           <p class="project-what">
             <strong>What's built:</strong> 7 custom Lead fields · 6-rule routing chain · Tier 1 SLA breach Flow · post-conversion Apex trigger · 4 reports · GTM Ops dashboard · permission set
@@ -506,7 +534,7 @@
           </div>
         </div>
 
-        <!-- PROJECT 2: Kitchi -->
+        <!-- PROJECT 3: Kitchi -->
         <div class="project-card">
           <div class="project-top">
             <span class="project-title">Kitchi — Food Waste App</span>
@@ -531,8 +559,6 @@
             <a class="project-link" href="https://github.com/mindofhenry/kitchi-overview" target="_blank">→ case study</a>
           </div>
         </div>
-
-        <!-- ADD MORE PROJECTS BELOW — copy the block above and edit -->
 
       </div>
     </section>
@@ -572,6 +598,7 @@
             <span class="stack-item">Flow Builder</span>
             <span class="stack-item">Assignment Rules</span>
             <span class="stack-item">Apex Triggers</span>
+            <span class="stack-item">MCP (Model Context Protocol)</span>
           </div>
         </div>
         <div class="stack-group">
@@ -624,4 +651,11 @@
 </main>
 
 <footer>
-  <div clas
+  <div class="container">
+    <p class="footer-text">henry marble · <span>gtm engineer</span> · san francisco</p>
+    <p class="footer-text"><span>© 2026</span></p>
+  </div>
+</footer>
+
+</body>
+</html>
