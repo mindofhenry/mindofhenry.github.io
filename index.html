@@ -406,6 +406,63 @@
     white-space: nowrap;
   }
  
+  /* ── certs ── */
+  .certs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cert-row {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .cert-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .cert-issuer {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .cert-status-earned {
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    background: #0e2a0e;
+    color: #5ada5a;
+    border: 1px solid #1a4a1a;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .cert-status-progress {
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    background: #1a1a0a;
+    color: #c8a032;
+    border: 1px solid #2a2a12;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
   /* ── about ── */
   .about-body {
     font-family: var(--sans);
@@ -472,6 +529,7 @@
     <ul class="nav-links">
       <li><a href="#projects">projects</a></li>
       <li><a href="#stack">stack</a></li>
+      <li><a href="#certs">certs</a></li>
       <li><a href="#about">about</a></li>
       <li><a href="#contact">contact</a></li>
     </ul>
@@ -568,7 +626,32 @@
           </div>
         </div>
 
-        <!-- PROJECT 3: Kitchi -->
+        <!-- PROJECT 3: DOOM Inc HubSpot -->
+        <div class="project-card">
+          <div class="project-top">
+            <span class="project-title">DOOM Inc — HubSpot GTM Org</span>
+            <span class="project-status status-live">live</span>
+          </div>
+          <p class="project-desc">
+            HubSpot mirror of the DOOM Inc GTM stack — same fictional Series B security SaaS, different CRM. Built to demonstrate cross-platform RevOps fluency: contact lifecycle management, deal pipeline configuration, and automated workflows without writing a line of Apex.
+          </p>
+          <p class="project-what">
+            <strong>What's built:</strong> Custom contact properties (ICP Fit, GTM Segment, Persona, SLA Tier) · deal pipeline with stage-gated automation · enrollment workflows for SLA breach alerting and post-conversion follow-up · active lists for segment-based reporting · operational dashboard surfacing pipeline health by segment and rep
+          </p>
+          <div class="project-tags">
+            <span class="tag">HubSpot</span>
+            <span class="tag">Workflows</span>
+            <span class="tag">Pipeline Management</span>
+            <span class="tag">Lead Routing</span>
+            <span class="tag">SLA Automation</span>
+            <span class="tag">RevOps</span>
+          </div>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/mindofhenry/doom-inc-hubspot" target="_blank">→ github</a>
+          </div>
+        </div>
+
+        <!-- PROJECT 4: Kitchi -->
         <div class="project-card">
           <div class="project-top">
             <span class="project-title">Kitchi — Food Waste App</span>
@@ -656,12 +739,42 @@
             <span class="stack-item">Qwen</span>
           </div>
         </div>
-        <div class="stack-group">
-           <p class="stack-group-label">Certifications</p>
-           <div class="stack-items">
-             <span class="stack-item in-progress">Certified Salesforce Administrator<span class="cert-badge">in progress</span></span>
-           </div>
-         </div>
+      </div>
+    </section>
+
+    <!-- CERTS -->
+    <section id="certs">
+      <div class="section-header">
+        <span class="section-label">// certifications</span>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="certs-list">
+
+        <div class="cert-row">
+          <div>
+            <div class="cert-name">Certified Salesforce Administrator</div>
+            <div class="cert-issuer">Salesforce</div>
+          </div>
+          <span class="cert-status-progress">in progress</span>
+        </div>
+
+        <div class="cert-row">
+          <div>
+            <div class="cert-name">Splunk Search Expert</div>
+            <div class="cert-issuer">Splunk</div>
+          </div>
+          <span class="cert-status-earned">earned</span>
+        </div>
+
+        <div class="cert-row">
+          <div>
+            <div class="cert-name">Python for Cybersecurity</div>
+            <div class="cert-issuer">UCLA Extension</div>
+          </div>
+          <span class="cert-status-earned">earned</span>
+        </div>
+
       </div>
     </section>
 
