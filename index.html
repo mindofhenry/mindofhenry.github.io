@@ -273,6 +273,34 @@
   .status-live { background: #0e2a0e; color: #5ada5a; border: 1px solid #1a4a1a; }
   .status-beta { background: #1a1a0a; color: #c8a032; border: 1px solid #2a2a12; }
   .status-wip  { background: #1a0e0e; color: #c05050; border: 1px solid #2a1a1a; }
+  .status-planned { background: #0e0e1a; color: #7070c0; border: 1px solid #1a1a2a; }
+
+  /* ── beacon platform ── */
+  .beacon-platform-header {
+    padding: 20px 0 8px;
+  }
+  .beacon-platform-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--accent-dim);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .beacon-platform-desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 600px;
+  }
+  .beacon-modules {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 12px;
+    padding-left: 16px;
+    border-left: 2px solid var(--border);
+  }
 
   .project-desc {
     font-family: var(--sans);
@@ -569,35 +597,138 @@
 
       <div class="projects-grid">
 
-        <!-- PROJECT 1: Beacon -->
-        <div class="project-card">
-          <div class="project-top">
-            <span class="project-title">Beacon — Rep Intelligence MCP Server</span>
-            <span class="project-status status-live">live</span>
-          </div>
-          <p class="project-desc">
-            MCP server that gives GTM reps instant access to product knowledge, objection handling, and competitive positioning — from wherever they already work. The core insight: the server is the product, the interfaces are just wrappers. Build once, connect anywhere.
-          </p>
-          <p class="project-what">
-            <strong>What's built:</strong> FastMCP server with <code>ask_product</code> tool · curated PostHog knowledge base (objections, competitors, personas, pricing, Hex dashboards) · <code>llm.py</code> provider abstraction (Anthropic, OpenAI, Gemini) · <code>ingest.py</code> to rebuild KB from any public GitHub repo · channel-native Slack bot (<code>#ask-beacon</code>, gap logging to <code>#beacon-gaps</code> + Notion) · Railway / Docker / AWS / GCP / Azure deployment configs
-          </p>
-          <div class="project-tags">
-            <span class="tag">Python</span>
-            <span class="tag">MCP / FastMCP</span>
-            <span class="tag">Slack API</span>
-            <span class="tag">Claude API</span>
-            <span class="tag">OpenAI</span>
-            <span class="tag">Gemini</span>
-            <span class="tag">Notion API</span>
-            <span class="tag">Docker</span>
-            <span class="tag">Railway</span>
-            <span class="tag">GTM Enablement</span>
+        <!-- BEACON PLATFORM -->
+        <div class="beacon-platform-header">
+          <p class="beacon-platform-label">// beacon — gtm intelligence platform</p>
+          <p class="beacon-platform-desc">A unified GTM intelligence platform built across four modules — each targeting a distinct failure point in outbound sales operations. One shared data layer. One MCP server. Four tools reps and RevOps teams actually use.</p>
+        </div>
+
+        <div class="beacon-modules">
+
+          <!-- CORE -->
+          <div class="project-card">
+            <div class="project-top">
+              <span class="project-title">Core</span>
+              <span class="project-status status-live">live</span>
+            </div>
+            <p class="project-desc">
+              MCP server giving GTM reps instant access to product knowledge, objection handling, and competitive intel — from any interface they already use. The server is the product; channels are wrappers.
+            </p>
+            <p class="project-what">
+              <strong>What's built:</strong> FastMCP server with <code>ask_product</code> tool · PostHog knowledge base (objections, competitors, personas, pricing) · <code>llm.py</code> provider abstraction (Anthropic, OpenAI, Gemini) · <code>ingest.py</code> pipeline · Slack bot with gap logging to Notion · Railway / Docker deployment
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">FastMCP</span>
+              <span class="tag">Claude API</span>
+              <span class="tag">Slack API</span>
+              <span class="tag">Docker</span>
+              <span class="tag">Railway</span>
+            </div>
+            <div class="project-links">
+              <a class="project-link" href="https://github.com/mindofhenry/beacon" target="_blank">→ github</a>
+            </div>
           </div>
 
-          <div class="project-links">
-            <a class="project-link" href="https://github.com/mindofhenry/beacon" target="_blank">→ github</a>
+          <!-- LOOP -->
+          <div class="project-card">
+            <div class="project-top">
+              <span class="project-title">Loop</span>
+              <span class="project-status status-wip">wip</span>
+            </div>
+            <p class="project-desc">
+              Sequence feedback loop engine. Ingests Outreach/Salesloft step-level performance data, maps it to Salesforce outcomes, surfaces underperforming steps, and generates LLM rewrite recommendations — closing the attribution loop Outreach admits doesn't exist natively.
+            </p>
+            <p class="project-what">
+              <strong>What's built:</strong> Python ETL ingesting sequence step data · Outreach + Salesforce attribution pipeline · step-level performance scoring · Claude API rewrite suggestions for underperforming steps · Next.js dashboard
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">Outreach API</span>
+              <span class="tag">Salesforce API</span>
+              <span class="tag">Claude API</span>
+              <span class="tag">Supabase</span>
+              <span class="tag">Next.js</span>
+            </div>
+            <div class="project-links"></div>
           </div>
-        </div>
+
+          <!-- SIGNAL -->
+          <div class="project-card">
+            <div class="project-top">
+              <span class="project-title">Signal</span>
+              <span class="project-status status-planned">planned</span>
+            </div>
+            <p class="project-desc">
+              Rep signal prioritization engine. Configurable weighted scoring across multi-source account signals with plain-English reasoning per score — built for teams too small for 6sense but drowning in intent noise.
+            </p>
+            <p class="project-what">
+              <strong>What's planned:</strong> Configurable weighted scoring model · signal ingestion adapters (intent, job change, product usage, CRM activity) · time decay functions · Claude API plain-English reasoning layer · prioritized account list UI
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">Salesforce API</span>
+              <span class="tag">Claude API</span>
+              <span class="tag">Supabase</span>
+              <span class="tag">Next.js</span>
+              <span class="tag">FastMCP</span>
+            </div>
+            <div class="project-links">
+              <a class="project-link" href="https://github.com/mindofhenry/beacon-signal" target="_blank">→ github</a>
+            </div>
+          </div>
+
+          <!-- GRAPH -->
+          <div class="project-card">
+            <div class="project-top">
+              <span class="project-title">Graph</span>
+              <span class="project-status status-planned">planned</span>
+            </div>
+            <p class="project-desc">
+              Account hierarchy normalization engine. Ingests hierarchy data from multiple sources, resolves conflicts, flags discrepancies, and produces a clean sellable account structure — replacing the spreadsheet every RevOps team is hiding.
+            </p>
+            <p class="project-what">
+              <strong>What's planned:</strong> Multi-source ingestion (SEC EDGAR, OpenCorporates, CRM) · probabilistic entity resolution via Splink · conflict detection and confidence scoring · clean hierarchy output with source attribution · Claude API disambiguation layer
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Splink</span>
+              <span class="tag">SEC EDGAR</span>
+              <span class="tag">Salesforce API</span>
+              <span class="tag">Claude API</span>
+              <span class="tag">Supabase</span>
+              <span class="tag">NetworkX</span>
+            </div>
+            <div class="project-links"></div>
+          </div>
+
+          <!-- PAIR -->
+          <div class="project-card">
+            <div class="project-top">
+              <span class="project-title">Pair</span>
+              <span class="project-status status-planned">planned</span>
+            </div>
+            <p class="project-desc">
+              AE/SDR pairing intelligence layer. Unified account-level touchpoint timeline across both reps, pre-inbound attribution surfacing, and pairing-level messaging performance — the operating environment paired sales teams don't have anywhere else.
+            </p>
+            <p class="project-what">
+              <strong>What's planned:</strong> Unified touchpoint timeline (Outreach + Salesforce) · pre-inbound attribution detection with configurable lookback window · dead messaging flagging · shared account book view · pairing performance analysis via Loop data layer
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Outreach API</span>
+              <span class="tag">Salesforce API</span>
+              <span class="tag">Claude API</span>
+              <span class="tag">Supabase</span>
+              <span class="tag">Next.js</span>
+              <span class="tag">FastMCP</span>
+            </div>
+            <div class="project-links"></div>
+          </div>
+
+        </div><!-- end .beacon-modules -->
 
         <!-- PROJECT 2: DOOM Inc SFDC -->
         <div class="project-card">
