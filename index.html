@@ -600,7 +600,7 @@
         <!-- BEACON PLATFORM -->
         <div class="beacon-platform-header">
           <p class="beacon-platform-label">// beacon — gtm intelligence platform</p>
-          <p class="beacon-platform-desc">A unified GTM intelligence platform built across four modules — each targeting a distinct failure point in outbound sales operations. One shared data layer. One MCP server. Four tools reps and RevOps teams actually use.</p>
+          <p class="beacon-platform-desc">A unified GTM intelligence platform built across five modules — each targeting a distinct failure point in outbound sales operations. One shared data layer. One MCP server. Five tools reps and RevOps teams actually use.</p>
         </div>
 
         <div class="beacon-modules">
@@ -634,24 +634,31 @@
           <div class="project-card">
             <div class="project-top">
               <span class="project-title">Loop</span>
-              <span class="project-status status-wip">wip</span>
+              <span class="project-status status-live">live</span>
             </div>
             <p class="project-desc">
-              Sequence feedback loop engine. Ingests Outreach/Salesloft step-level performance data, maps it to Salesforce outcomes, surfaces underperforming steps, and generates LLM rewrite recommendations — closing the attribution loop Outreach admits doesn't exist natively.
+              Closes the attribution gap Outreach explicitly admits exists: no step-level meeting attribution. Ingests sequence data from Outreach and Salesloft, maps it to Salesforce pipeline outcomes at the step level, diagnoses failure modes in underperforming steps, and generates persona-aware LLM rewrite recommendations. Includes "Ask Beacon" — natural language analytics with streaming responses and auto-generated charts.
             </p>
             <p class="project-what">
-              <strong>What's built:</strong> Python ETL ingesting sequence step data · Outreach + Salesforce attribution pipeline · step-level performance scoring · Claude API rewrite suggestions for underperforming steps · Next.js dashboard
+              <strong>What's built:</strong> Position-adjusted Bayesian attribution model with U-shaped multi-touch credit allocation · step intent classifier (6 types) with intent-specific thresholds · 5-module classifier pipeline with <code>RewriteEngine</code> deep module and <code>LLMClient</code> Protocol abstraction · 34KB messaging intelligence knowledge base · 6-tool FastMCP server (Railway, SSE) · Next.js dashboard with 7 views, 3 role personas (Manager, RevOps, Rep), streaming Ask Beacon, and interactive rewrite drawer · 9 Supabase migrations · test suite with boundary tests and canned LLM client
             </p>
             <div class="project-tags">
               <span class="tag">Python</span>
               <span class="tag">Pandas</span>
               <span class="tag">Outreach API</span>
+              <span class="tag">Salesloft API</span>
               <span class="tag">Salesforce API</span>
               <span class="tag">Claude API</span>
               <span class="tag">Supabase</span>
+              <span class="tag">FastMCP</span>
               <span class="tag">Next.js</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Recharts</span>
+              <span class="tag">Railway</span>
+              <span class="tag">Vercel</span>
             </div>
             <div class="project-links">
+              <a class="project-link" href="https://beacon-loop.vercel.app" target="_blank">→ live demo</a>
               <a class="project-link" href="https://github.com/mindofhenry/beacon-loop" target="_blank">→ github</a>
             </div>
           </div>
