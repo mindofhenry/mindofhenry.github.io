@@ -275,31 +275,107 @@
   .status-wip  { background: #1a0e0e; color: #c05050; border: 1px solid #2a1a1a; }
   .status-planned { background: #0e0e1a; color: #7070c0; border: 1px solid #1a1a2a; }
 
-  /* ── beacon platform ── */
-  .beacon-platform-header {
-    padding: 20px 0 8px;
+  /* ── beacon collapsible modules ── */
+  .beacon-module {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.15s;
+    position: relative;
   }
-  .beacon-platform-label {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: var(--accent-dim);
-    text-transform: uppercase;
-    margin-bottom: 6px;
+
+  .beacon-module::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.15s;
   }
-  .beacon-platform-desc {
-    font-family: var(--sans);
-    font-size: 13px;
-    color: var(--text-muted);
-    line-height: 1.6;
-    max-width: 600px;
+
+  .beacon-module:hover {
+    border-color: var(--border-hover);
   }
-  .beacon-modules {
+
+  .beacon-module:hover::before { opacity: 1; }
+
+  .bm-toggle {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 18px 24px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+  }
+
+  .bm-toggle:hover {
+    background: var(--bg-hover);
+  }
+
+  .bm-toggle-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+  }
+
+  .bm-title {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+  }
+
+  .bm-brief {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .bm-toggle-right {
+    display: flex;
+    align-items: center;
     gap: 10px;
-    margin-top: 12px;
-    padding-left: 16px;
-    border-left: 2px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .bm-chevron {
+    width: 14px;
+    height: 14px;
+    color: var(--text-muted);
+    transition: transform 0.25s ease, color 0.15s;
+    flex-shrink: 0;
+  }
+
+  .beacon-module.open .bm-chevron {
+    transform: rotate(180deg);
+    color: var(--accent-dim);
+  }
+
+  .bm-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .bm-content-inner {
+    border-top: 1px solid var(--border);
+    padding: 20px 24px;
+  }
+
+  @media (max-width: 520px) {
+    .bm-brief { display: none; }
+    .bm-toggle { padding: 14px 18px; }
+    .bm-content-inner { padding: 16px 18px; }
   }
 
   .project-desc {
@@ -539,11 +615,313 @@
 
   .footer-text span { color: var(--text-secondary); }
 
+  /* ── sub-group headers ── */
+  .subgroup-header {
+    padding: 16px 0 6px;
+    margin-left: 4px;
+  }
+
+  .subgroup-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--accent-dim);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .subgroup-desc {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 600px;
+  }
+
+  .module-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 12px;
+    padding-left: 16px;
+    border-left: 2px solid var(--border);
+  }
+
+  /* ── plays ── */
+  .plays-desc {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 600px;
+    margin-top: -24px;
+    margin-bottom: 32px;
+  }
+
+  .plays-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .play {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.15s;
+    position: relative;
+  }
+
+  .play::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+
+  .play:hover { border-color: var(--border-hover); }
+  .play:hover::before { opacity: 1; }
+
+  .play-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 22px 28px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+  }
+
+  .play-toggle:hover { background: var(--bg-hover); }
+
+  .play-toggle-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+  }
+
+  .play-number {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--accent-dim);
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .play-title {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .play-toggle-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .play-status {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .play-chevron {
+    width: 16px;
+    height: 16px;
+    color: var(--text-muted);
+    transition: transform 0.25s ease, color 0.15s;
+    flex-shrink: 0;
+  }
+
+  .play.open .play-chevron {
+    transform: rotate(180deg);
+    color: var(--accent-dim);
+  }
+
+  .play-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .play-content-inner { border-top: 1px solid var(--border); }
+
+  .play-meta { padding: 24px 28px 0; }
+
+  .play-subtitle {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    line-height: 1.7;
+  }
+
+  .play-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .play-screenshot {
+    margin: 0 28px 24px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    background: #111;
+  }
+
+  .play-screenshot img {
+    width: 100%;
+    display: block;
+    opacity: 0.92;
+    transition: opacity 0.2s;
+    cursor: zoom-in;
+  }
+
+  .play-screenshot:hover img { opacity: 1; }
+
+  .play-body { padding: 0 28px 28px; }
+
+  .play-section-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--accent-dim);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+
+  .play-section-label:first-child { margin-top: 0; }
+
+  .play-detail {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+
+  .play-detail:last-child { margin-bottom: 0; }
+
+  .play-detail code {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent-dim);
+    background: #1a1a1a;
+    padding: 1px 5px;
+    border-radius: 2px;
+  }
+
+  .play-detail strong {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .play-flow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+    padding: 16px 18px;
+    background: #111;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+  }
+
+  .flow-step {
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    padding: 5px 10px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--text-secondary);
+    background: var(--bg-card);
+    white-space: nowrap;
+  }
+
+  .flow-arrow {
+    color: var(--accent-dim);
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  .flow-branch {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-left: 2px solid var(--accent-dim);
+    padding-left: 10px;
+  }
+
+  .flow-branch .flow-step {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+
+  .flow-branch-label {
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    color: var(--accent-dim);
+    text-transform: uppercase;
+  }
+
+  /* ── lightbox ── */
+  .lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s, visibility 0.25s;
+  }
+
+  .lightbox-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .lightbox-overlay img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+
   /* ── responsive ── */
   @media (max-width: 520px) {
     .nav-links { display: none; }
     .hero { padding: 56px 0 48px; }
     .stack-grid { grid-template-columns: 1fr 1fr; }
+    .play-toggle { padding: 18px 20px; }
+    .play-meta { padding: 20px 20px 0; }
+    .play-body { padding: 0 20px 20px; }
+    .play-screenshot { margin: 0 20px 20px; }
+    .play-title { font-size: 13px; }
+    .play-flow { flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
@@ -554,6 +932,7 @@
     <a class="nav-name" href="#">hm<span>_</span></a>
     <ul class="nav-links">
       <li><a href="#projects">projects</a></li>
+      <li><a href="#plays">plays</a></li>
       <li><a href="#stack">stack</a></li>
       <li><a href="#certs">certs</a></li>
       <li><a href="#about">about</a></li>
@@ -570,15 +949,15 @@
       <p class="hero-label">// gtm engineer · san francisco</p>
       <h1>Henry Marble.<br>I build the systems<br>behind <em>GTM motions.</em></h1>
       <p class="hero-bio">
-        5+ years living inside outbound sales — Cloudflare, Pave. I know where the CRM breaks, how leads go cold, and what makes all pieces of the GTM org hum. Now I build the tools to make it come to life and help reps do one thing: sell.
+        Former SDR turned GTM Engineer with 5 years at Cloudflare and Pave. I know where GTM systems break because I lived it: bad routing, cold Tier 1 inbounds, sequence data that never reaches revenue outcomes, scoring tools reps ignore because they can’t explain the number, handoffs that drop context. My build philosophy: lower every barrier between a rep and their next best action, and give managers the insight to coach on specifics rather than gut feel.
       </p>
       <div class="hero-meta">
         <span class="meta-chip">Salesforce</span>
-        <span class="meta-chip">Apex</span>
-        <span class="meta-chip">Flow Builder</span>
+        <span class="meta-chip">HubSpot</span>
+        <span class="meta-chip">n8n</span>
+        <span class="meta-chip">Clay</span>
         <span class="meta-chip">SQL</span>
         <span class="meta-chip">Python / Pandas</span>
-        <span class="meta-chip">iOS / Swift</span>
       </div>
       <div class="hero-links">
         <a class="btn btn-primary" href="https://github.com/mindofhenry" target="_blank">→ GitHub</a>
@@ -598,224 +977,444 @@
       <div class="projects-grid">
 
         <!-- BEACON PLATFORM -->
-        <div class="beacon-platform-header">
-          <p class="beacon-platform-label">// beacon — gtm intelligence platform</p>
-          <p class="beacon-platform-desc">A unified GTM intelligence platform built across five modules — each targeting a distinct failure point in outbound sales operations. One shared data layer. One MCP server. Five tools reps and RevOps teams actually use.</p>
+        <div class="subgroup-header">
+          <p class="subgroup-label">// beacon — gtm intelligence platform</p>
+          <p class="subgroup-desc">Five modules, each targeting a distinct failure point in outbound sales operations. One shared data layer. One MCP server.</p>
         </div>
 
-        <div class="beacon-modules">
+        <div class="module-group">
 
-          <!-- CORE -->
-          <div class="project-card">
-            <div class="project-top">
-              <span class="project-title">Core</span>
-              <span class="project-status status-live">live</span>
+          <!-- LOOP -->
+          <div class="beacon-module" id="bm-loop">
+            <div class="bm-toggle" onclick="toggleBM('bm-loop')">
+              <div class="bm-toggle-left">
+                <span class="bm-title">Loop</span>
+                <span class="bm-brief">Sequence-to-revenue attribution and rewrite engine</span>
+              </div>
+              <div class="bm-toggle-right">
+                <span class="project-status status-live">live</span>
+                <svg class="bm-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
             </div>
-            <p class="project-desc">
-              MCP server giving GTM reps instant access to product knowledge, objection handling, and competitive intel — from any interface they already use. The server is the product; channels are wrappers.
-            </p>
-            <p class="project-what">
-              <strong>What's built:</strong> FastMCP server with <code>ask_product</code> tool · PostHog knowledge base (objections, competitors, personas, pricing) · <code>llm.py</code> provider abstraction (Anthropic, OpenAI, Gemini) · <code>ingest.py</code> pipeline · Slack bot with gap logging to Notion · Railway / Docker deployment
-            </p>
-            <div class="project-tags">
-              <span class="tag">Python</span>
-              <span class="tag">FastMCP</span>
-              <span class="tag">Claude API</span>
-              <span class="tag">Slack API</span>
-              <span class="tag">Docker</span>
-              <span class="tag">Railway</span>
-            </div>
-            <div class="project-links">
-              <a class="project-link" href="https://github.com/mindofhenry/beacon" target="_blank">→ github</a>
+            <div class="bm-content">
+              <div class="bm-content-inner">
+                <p class="project-desc">
+                  Closes the attribution gap Outreach explicitly admits exists: no step-level meeting attribution. Ingests sequence data from Outreach and Salesloft, maps it to Salesforce pipeline outcomes at the step level, diagnoses failure modes in underperforming steps, and generates persona-aware LLM rewrite recommendations. Includes "Ask Beacon" for natural language analytics with streaming responses and auto-generated charts.
+                </p>
+                <p class="project-what">
+                  <strong>What's built:</strong> Position-adjusted Bayesian attribution model with U-shaped multi-touch credit allocation · step intent classifier (6 types) with intent-specific thresholds · 5-module classifier pipeline with <code>RewriteEngine</code> deep module and <code>LLMClient</code> Protocol abstraction · 34KB messaging intelligence knowledge base · 6-tool FastMCP server (Railway, SSE) · Next.js dashboard with 7 views, 3 role personas (Manager, RevOps, Rep), streaming Ask Beacon, and interactive rewrite drawer · 9 Supabase migrations · test suite with boundary tests and canned LLM client
+                </p>
+                <div class="project-tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">Pandas</span>
+                  <span class="tag">Outreach API</span>
+                  <span class="tag">Salesloft API</span>
+                  <span class="tag">Salesforce API</span>
+                  <span class="tag">Claude API</span>
+                  <span class="tag">Supabase</span>
+                  <span class="tag">FastMCP</span>
+                  <span class="tag">Next.js</span>
+                  <span class="tag">TypeScript</span>
+                  <span class="tag">Recharts</span>
+                  <span class="tag">Railway</span>
+                  <span class="tag">Vercel</span>
+                </div>
+                <div class="project-links">
+                  <a class="project-link" href="https://beacon-loop.vercel.app" target="_blank">→ live demo</a>
+                  <a class="project-link" href="https://github.com/mindofhenry/beacon-loop" target="_blank">→ github</a>
+                </div>
+              </div>
             </div>
           </div>
 
-          <!-- LOOP -->
-          <div class="project-card">
-            <div class="project-top">
-              <span class="project-title">Loop</span>
-              <span class="project-status status-live">live</span>
+          <!-- INTEL -->
+          <div class="beacon-module" id="bm-intel">
+            <div class="bm-toggle" onclick="toggleBM('bm-intel')">
+              <div class="bm-toggle-left">
+                <span class="bm-title">Intel</span>
+                <span class="bm-brief">Product knowledge MCP server and Slack bot</span>
+              </div>
+              <div class="bm-toggle-right">
+                <span class="project-status status-live">live</span>
+                <svg class="bm-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
             </div>
-            <p class="project-desc">
-              Closes the attribution gap Outreach explicitly admits exists: no step-level meeting attribution. Ingests sequence data from Outreach and Salesloft, maps it to Salesforce pipeline outcomes at the step level, diagnoses failure modes in underperforming steps, and generates persona-aware LLM rewrite recommendations. Includes "Ask Beacon" — natural language analytics with streaming responses and auto-generated charts.
-            </p>
-            <p class="project-what">
-              <strong>What's built:</strong> Position-adjusted Bayesian attribution model with U-shaped multi-touch credit allocation · step intent classifier (6 types) with intent-specific thresholds · 5-module classifier pipeline with <code>RewriteEngine</code> deep module and <code>LLMClient</code> Protocol abstraction · 34KB messaging intelligence knowledge base · 6-tool FastMCP server (Railway, SSE) · Next.js dashboard with 7 views, 3 role personas (Manager, RevOps, Rep), streaming Ask Beacon, and interactive rewrite drawer · 9 Supabase migrations · test suite with boundary tests and canned LLM client
-            </p>
-            <div class="project-tags">
-              <span class="tag">Python</span>
-              <span class="tag">Pandas</span>
-              <span class="tag">Outreach API</span>
-              <span class="tag">Salesloft API</span>
-              <span class="tag">Salesforce API</span>
-              <span class="tag">Claude API</span>
-              <span class="tag">Supabase</span>
-              <span class="tag">FastMCP</span>
-              <span class="tag">Next.js</span>
-              <span class="tag">TypeScript</span>
-              <span class="tag">Recharts</span>
-              <span class="tag">Railway</span>
-              <span class="tag">Vercel</span>
-            </div>
-            <div class="project-links">
-              <a class="project-link" href="https://beacon-loop.vercel.app" target="_blank">→ live demo</a>
-              <a class="project-link" href="https://github.com/mindofhenry/beacon-loop" target="_blank">→ github</a>
+            <div class="bm-content">
+              <div class="bm-content-inner">
+                <p class="project-desc">
+                  MCP server giving GTM reps instant access to product knowledge, objection handling, and competitive intel from any interface they already use. The server is the product; channels are wrappers.
+                </p>
+                <p class="project-what">
+                  <strong>What's built:</strong> FastMCP server with <code>ask_product</code> tool · PostHog knowledge base (objections, competitors, personas, pricing) · <code>llm.py</code> provider abstraction (Anthropic, OpenAI, Gemini) · <code>ingest.py</code> pipeline · Slack bot with gap logging to Notion · Railway / Docker deployment
+                </p>
+                <div class="project-tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">FastMCP</span>
+                  <span class="tag">Claude API</span>
+                  <span class="tag">Slack API</span>
+                  <span class="tag">Docker</span>
+                  <span class="tag">Railway</span>
+                </div>
+                <div class="project-links">
+                  <a class="project-link" href="https://github.com/mindofhenry/beacon" target="_blank">→ github</a>
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- SIGNAL -->
-          <div class="project-card">
-            <div class="project-top">
-              <span class="project-title">Signal</span>
-              <span class="project-status status-planned">planned</span>
+          <div class="beacon-module" id="bm-signal">
+            <div class="bm-toggle" onclick="toggleBM('bm-signal')">
+              <div class="bm-toggle-left">
+                <span class="bm-title">Signal</span>
+                <span class="bm-brief">Weighted scoring engine for rep signal prioritization</span>
+              </div>
+              <div class="bm-toggle-right">
+                <span class="project-status status-wip">wip</span>
+                <svg class="bm-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
             </div>
-            <p class="project-desc">
-              Rep signal prioritization engine. Configurable weighted scoring across multi-source account signals with plain-English reasoning per score — built for teams too small for 6sense but drowning in intent noise.
-            </p>
-            <p class="project-what">
-              <strong>What's planned:</strong> Configurable weighted scoring model · signal ingestion adapters (intent, job change, product usage, CRM activity) · time decay functions · Claude API plain-English reasoning layer · prioritized account list UI
-            </p>
-            <div class="project-tags">
-              <span class="tag">Python</span>
-              <span class="tag">Pandas</span>
-              <span class="tag">Salesforce API</span>
-              <span class="tag">Claude API</span>
-              <span class="tag">Supabase</span>
-              <span class="tag">Next.js</span>
-              <span class="tag">FastMCP</span>
-            </div>
-            <div class="project-links">
-              <a class="project-link" style="color: var(--text-muted); border-color: var(--border); cursor: default;">→ github (coming soon)</a>
+            <div class="bm-content">
+              <div class="bm-content-inner">
+                <p class="project-desc">
+                  Rep signal prioritization engine. Configurable weighted scoring across multi-source account signals with plain-English reasoning per score. Built for teams too small for 6sense but drowning in intent noise.
+                </p>
+                <p class="project-what">
+                  <strong>In development:</strong> Configurable weighted scoring model · signal ingestion adapters (intent, job change, product usage, CRM activity) · time decay functions · Claude API plain-English reasoning layer · prioritized account list UI
+                </p>
+                <div class="project-tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">Pandas</span>
+                  <span class="tag">Salesforce API</span>
+                  <span class="tag">Claude API</span>
+                  <span class="tag">Supabase</span>
+                  <span class="tag">Next.js</span>
+                  <span class="tag">FastMCP</span>
+                </div>
+                <div class="project-links">
+                  <a class="project-link" href="https://github.com/mindofhenry/beacon-signal" target="_blank">→ github</a>
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- GRAPH -->
-          <div class="project-card">
-            <div class="project-top">
-              <span class="project-title">Graph</span>
-              <span class="project-status status-planned">planned</span>
+          <div class="beacon-module" id="bm-graph">
+            <div class="bm-toggle" onclick="toggleBM('bm-graph')">
+              <div class="bm-toggle-left">
+                <span class="bm-title">Graph</span>
+                <span class="bm-brief">Account hierarchy normalization</span>
+              </div>
+              <div class="bm-toggle-right">
+                <span class="project-status status-planned">planned</span>
+                <svg class="bm-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
             </div>
-            <p class="project-desc">
-              Account hierarchy normalization engine. Ingests hierarchy data from multiple sources, resolves conflicts, flags discrepancies, and produces a clean sellable account structure — replacing the spreadsheet every RevOps team is hiding.
-            </p>
-            <p class="project-what">
-              <strong>What's planned:</strong> Multi-source ingestion (SEC EDGAR, OpenCorporates, CRM) · probabilistic entity resolution via Splink · conflict detection and confidence scoring · clean hierarchy output with source attribution · Claude API disambiguation layer
-            </p>
-            <div class="project-tags">
-              <span class="tag">Python</span>
-              <span class="tag">Splink</span>
-              <span class="tag">SEC EDGAR</span>
-              <span class="tag">Salesforce API</span>
-              <span class="tag">Claude API</span>
-              <span class="tag">Supabase</span>
-              <span class="tag">NetworkX</span>
-            </div>
-            <div class="project-links">
-              <a class="project-link" style="color: var(--text-muted); border-color: var(--border); cursor: default;">→ github (coming soon)</a>
+            <div class="bm-content">
+              <div class="bm-content-inner">
+                <p class="project-desc">
+                  Account hierarchy normalization engine. Ingests hierarchy data from multiple sources, resolves conflicts, flags discrepancies, and produces a clean sellable account structure.
+                </p>
+                <p class="project-what">
+                  <strong>What's planned:</strong> Multi-source ingestion (SEC EDGAR, OpenCorporates, CRM) · probabilistic entity resolution via Splink · conflict detection and confidence scoring · clean hierarchy output with source attribution · Claude API disambiguation layer
+                </p>
+                <div class="project-tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">Splink</span>
+                  <span class="tag">SEC EDGAR</span>
+                  <span class="tag">Salesforce API</span>
+                  <span class="tag">Claude API</span>
+                  <span class="tag">Supabase</span>
+                  <span class="tag">NetworkX</span>
+                </div>
+                <div class="project-links">
+                  <a class="project-link" style="color: var(--text-muted); border-color: var(--border); cursor: default;">→ github (coming soon)</a>
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- PAIR -->
-          <div class="project-card">
-            <div class="project-top">
-              <span class="project-title">Pair</span>
-              <span class="project-status status-planned">planned</span>
+          <div class="beacon-module" id="bm-pair">
+            <div class="bm-toggle" onclick="toggleBM('bm-pair')">
+              <div class="bm-toggle-left">
+                <span class="bm-title">Pair</span>
+                <span class="bm-brief">AE/SDR pairing intelligence and shared timeline</span>
+              </div>
+              <div class="bm-toggle-right">
+                <span class="project-status status-planned">planned</span>
+                <svg class="bm-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
             </div>
-            <p class="project-desc">
-              AE/SDR pairing intelligence layer. Unified account-level touchpoint timeline across both reps, pre-inbound attribution surfacing, and pairing-level messaging performance — the operating environment paired sales teams don't have anywhere else.
-            </p>
-            <p class="project-what">
-              <strong>What's planned:</strong> Unified touchpoint timeline (Outreach + Salesforce) · pre-inbound attribution detection with configurable lookback window · dead messaging flagging · shared account book view · pairing performance analysis via Loop data layer
-            </p>
-            <div class="project-tags">
-              <span class="tag">Python</span>
-              <span class="tag">Outreach API</span>
-              <span class="tag">Salesforce API</span>
-              <span class="tag">Claude API</span>
-              <span class="tag">Supabase</span>
-              <span class="tag">Next.js</span>
-              <span class="tag">FastMCP</span>
-            </div>
-            <div class="project-links">
-              <a class="project-link" style="color: var(--text-muted); border-color: var(--border); cursor: default;">→ github (coming soon)</a>
+            <div class="bm-content">
+              <div class="bm-content-inner">
+                <p class="project-desc">
+                  AE/SDR pairing intelligence layer. Unified account-level touchpoint timeline across both reps, pre-inbound attribution surfacing, and pairing-level messaging performance.
+                </p>
+                <p class="project-what">
+                  <strong>What's planned:</strong> Unified touchpoint timeline (Outreach + Salesforce) · pre-inbound attribution detection with configurable lookback window · dead messaging flagging · shared account book view · pairing performance analysis via Loop data layer
+                </p>
+                <div class="project-tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">Outreach API</span>
+                  <span class="tag">Salesforce API</span>
+                  <span class="tag">Claude API</span>
+                  <span class="tag">Supabase</span>
+                  <span class="tag">Next.js</span>
+                  <span class="tag">FastMCP</span>
+                </div>
+                <div class="project-links">
+                  <a class="project-link" style="color: var(--text-muted); border-color: var(--border); cursor: default;">→ github (coming soon)</a>
+                </div>
+              </div>
             </div>
           </div>
 
-        </div><!-- end .beacon-modules -->
+        </div>
 
-        <!-- PROJECT 2: DOOM Inc SFDC -->
-        <div class="project-card">
-          <div class="project-top">
-            <span class="project-title">DOOM Inc — Salesforce GTM Org</span>
-            <span class="project-status status-live">live</span>
+        <!-- DOOM INC PLATFORM -->
+        <div class="subgroup-header">
+          <p class="subgroup-label">// doom inc — mock b2b security saas org</p>
+          <p class="subgroup-desc">Full GTM operations stack for a fictional Series B cybersecurity company. Same org, two CRMs — demonstrating cross-platform RevOps fluency.</p>
+        </div>
+
+        <div class="module-group">
+
+          <!-- DOOM Inc SFDC -->
+          <div class="beacon-module" id="doom-sfdc">
+            <div class="bm-toggle" onclick="toggleBM('doom-sfdc')">
+              <div class="bm-toggle-left">
+                <span class="bm-title">Salesforce GTM Org</span>
+                <span class="bm-brief">Apex, Flow Builder, lead routing, SLA enforcement</span>
+              </div>
+              <div class="bm-toggle-right">
+                <span class="project-status status-live">live</span>
+                <svg class="bm-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
+            </div>
+            <div class="bm-content">
+              <div class="bm-content-inner">
+                <p class="project-desc">
+                  Full Salesforce build simulating the RevOps infrastructure of a fictional Series B security SaaS. Custom data model, lead routing, SLA enforcement, and operational reporting — the kind of system a GTM Engineer would own on day one.
+                </p>
+                <p class="project-what">
+                  <strong>What's built:</strong> 7 custom Lead fields · 6-rule routing chain (segment + persona → rep or queue) · Tier 1 SLA breach Flow · post-conversion Apex trigger with test coverage · 4 operational reports · GTM Ops dashboard · scoped permission set
+                </p>
+                <div class="project-tags">
+                  <span class="tag">Apex</span>
+                  <span class="tag">Flow Builder</span>
+                  <span class="tag">SOQL</span>
+                  <span class="tag">Lead Routing</span>
+                  <span class="tag">SLA Automation</span>
+                  <span class="tag">Salesforce</span>
+                </div>
+                <div class="project-links">
+                  <a class="project-link" href="https://github.com/mindofhenry/doom-inc-sfdc" target="_blank">→ github</a>
+                </div>
+              </div>
+            </div>
           </div>
-          <p class="project-desc">
-            Full Salesforce build simulating the RevOps infrastructure of a fictional Series B security SaaS. Custom data model, lead routing, SLA enforcement, and operational reporting — the kind of system a GTM Engineer would own on day one.
-          </p>
-          <p class="project-what">
-            <strong>What's built:</strong> 7 custom Lead fields · 6-rule routing chain (segment + persona → rep or queue) · Tier 1 SLA breach Flow · post-conversion Apex trigger with test coverage · 4 operational reports · GTM Ops dashboard · scoped permission set
-          </p>
-          <div class="project-tags">
-            <span class="tag">Apex</span>
-            <span class="tag">Flow Builder</span>
-            <span class="tag">SOQL</span>
-            <span class="tag">Lead Routing</span>
-            <span class="tag">SLA Automation</span>
-            <span class="tag">Salesforce</span>
+
+          <!-- DOOM Inc HubSpot -->
+          <div class="beacon-module" id="doom-hubspot">
+            <div class="bm-toggle" onclick="toggleBM('doom-hubspot')">
+              <div class="bm-toggle-left">
+                <span class="bm-title">HubSpot GTM Org</span>
+                <span class="bm-brief">Workflows, pipeline management, lifecycle automation</span>
+              </div>
+              <div class="bm-toggle-right">
+                <span class="project-status status-live">live</span>
+                <svg class="bm-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
+            </div>
+            <div class="bm-content">
+              <div class="bm-content-inner">
+                <p class="project-desc">
+                  HubSpot mirror of the DOOM Inc GTM stack — same fictional Series B security SaaS, different CRM. Built to demonstrate cross-platform RevOps fluency: contact lifecycle management, deal pipeline configuration, and automated workflows without writing a line of Apex.
+                </p>
+                <p class="project-what">
+                  <strong>What's built:</strong> Custom contact properties (ICP Fit, GTM Segment, Persona, SLA Tier) · deal pipeline with stage-gated automation · enrollment workflows for SLA breach alerting and post-conversion follow-up · active lists for segment-based reporting · operational dashboard surfacing pipeline health by segment and rep
+                </p>
+                <div class="project-tags">
+                  <span class="tag">HubSpot</span>
+                  <span class="tag">Workflows</span>
+                  <span class="tag">Pipeline Management</span>
+                  <span class="tag">Lead Routing</span>
+                  <span class="tag">SLA Automation</span>
+                  <span class="tag">RevOps</span>
+                </div>
+                <div class="project-links">
+                  <a class="project-link" href="https://github.com/mindofhenry/doom-inc-hubspot" target="_blank">→ github</a>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="project-links">
-            <a class="project-link" href="https://github.com/mindofhenry/doom-inc-sfdc" target="_blank">→ github</a>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PLAYS -->
+    <section id="plays">
+      <div class="section-header">
+        <span class="section-label">// plays</span>
+        <div class="section-line"></div>
+      </div>
+
+      <p class="plays-desc">End-to-end workflows built with real tools, real APIs, and real world scenarios.</p>
+
+      <div class="plays-list">
+
+        <!-- PLAY 01: Clay Clausewise -->
+        <div class="play" id="play-01">
+          <div class="play-toggle" onclick="togglePlay('play-01')">
+            <div class="play-toggle-left">
+              <span class="play-number">01</span>
+              <span class="play-title">New Vertical Sales Planning & Execution</span>
+            </div>
+            <div class="play-toggle-right">
+              <span class="play-status status-live">live</span>
+              <svg class="play-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+            </div>
+          </div>
+          <div class="play-content">
+            <div class="play-content-inner">
+              <div class="play-meta">
+                <p class="play-subtitle">
+                  Clay enrichment workbook targeting a new vertical for a fictional Series B CLM platform. Full Find, Enrich, Transform, Export pipeline scoped to financial services accounts showing hiring and product signals.
+                </p>
+                <div class="play-tags">
+                  <span class="tag">Clay</span>
+                  <span class="tag">Claygent</span>
+                  <span class="tag">Enrichment</span>
+                  <span class="tag">ICP Scoring</span>
+                  <span class="tag">New Segment Expansion</span>
+                </div>
+              </div>
+
+              <div class="play-screenshot">
+                <img src="screenshots/clausewise scoring - clay portfolio.png" alt="Clausewise Clay workbook — ICP scoring view" loading="lazy" />
+              </div>
+
+              <div class="play-body">
+                <p class="play-section-label">The problem</p>
+                <p class="play-detail">
+                  Clausewise (fictional Series B CLM/contract management platform) wants to expand from legal into financial services. No existing account list, no ICP definition for the vertical, no signal data to prioritize outreach. The GTM team needs a repeatable enrichment pipeline, not a one-off spreadsheet.
+                </p>
+
+                <p class="play-section-label">What's built</p>
+                <p class="play-detail">
+                  <strong>Find:</strong> Sourced financial services accounts matching Clausewise's ICP criteria using Clay's built-in company search, filtered by industry, headcount, and funding stage.
+                </p>
+                <p class="play-detail">
+                  <strong>Enrich:</strong> Claygent columns checking each account's blog for recent product announcements and careers page for open compliance/legal roles. These act as buying signals: a company hiring a Head of Legal or posting about SOX compliance is more likely to need a CLM tool.
+                </p>
+                <p class="play-detail">
+                  <strong>Transform:</strong> Tiered accounts into Tier 1 (strong fit + active signals), Tier 2 (fit, weaker signals), and Tier 3 (marginal fit) using conditional logic. AI-generated personalized email openers per account referencing specific signals found during enrichment.
+                </p>
+                <p class="play-detail">
+                  <strong>Export:</strong> Formatted for CRM import with all enrichment columns, tier assignment, and personalized openers ready for sequence loading.
+                </p>
+
+                <p class="play-section-label">Pipeline</p>
+                <div class="play-flow">
+                  <span class="flow-step">Company Search</span>
+                  <span class="flow-arrow">→</span>
+                  <span class="flow-step">Claygent: Blog Check</span>
+                  <span class="flow-arrow">→</span>
+                  <span class="flow-step">Claygent: Hiring Check</span>
+                  <span class="flow-arrow">→</span>
+                  <span class="flow-step">Tier Scoring</span>
+                  <span class="flow-arrow">→</span>
+                  <span class="flow-step">AI Openers</span>
+                  <span class="flow-arrow">→</span>
+                  <span class="flow-step">CRM Export</span>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
 
-        <!-- PROJECT 3: DOOM Inc HubSpot -->
-        <div class="project-card">
-          <div class="project-top">
-            <span class="project-title">DOOM Inc — HubSpot GTM Org</span>
-            <span class="project-status status-live">live</span>
+        <!-- PLAY 02: n8n Signal Router -->
+        <div class="play" id="play-02">
+          <div class="play-toggle" onclick="togglePlay('play-02')">
+            <div class="play-toggle-left">
+              <span class="play-number">02</span>
+              <span class="play-title">New Hire Signal Routing Automation</span>
+            </div>
+            <div class="play-toggle-right">
+              <span class="play-status status-live">live</span>
+              <svg class="play-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+            </div>
           </div>
-          <p class="project-desc">
-            HubSpot mirror of the DOOM Inc GTM stack — same fictional Series B security SaaS, different CRM. Built to demonstrate cross-platform RevOps fluency: contact lifecycle management, deal pipeline configuration, and automated workflows without writing a line of Apex.
-          </p>
-          <p class="project-what">
-            <strong>What's built:</strong> Custom contact properties (ICP Fit, GTM Segment, Persona, SLA Tier) · deal pipeline with stage-gated automation · enrollment workflows for SLA breach alerting and post-conversion follow-up · active lists for segment-based reporting · operational dashboard surfacing pipeline health by segment and rep
-          </p>
-          <div class="project-tags">
-            <span class="tag">HubSpot</span>
-            <span class="tag">Workflows</span>
-            <span class="tag">Pipeline Management</span>
-            <span class="tag">Lead Routing</span>
-            <span class="tag">SLA Automation</span>
-            <span class="tag">RevOps</span>
-          </div>
-          <div class="project-links">
-            <a class="project-link" href="https://github.com/mindofhenry/doom-inc-hubspot" target="_blank">→ github</a>
-          </div>
-        </div>
+          <div class="play-content">
+            <div class="play-content-inner">
+              <div class="play-meta">
+                <p class="play-subtitle">
+                  n8n workflow that ingests job change signals via webhook, enriches with Apollo, scores against ICP criteria, and routes to Salesforce, HubSpot, and Slack based on tier. Event-driven, dual-CRM, source-agnostic by design.
+                </p>
+                <div class="play-tags">
+                  <span class="tag">n8n</span>
+                  <span class="tag">Apollo API</span>
+                  <span class="tag">Salesforce</span>
+                  <span class="tag">HubSpot</span>
+                  <span class="tag">Slack</span>
+                  <span class="tag">Webhook</span>
+                  <span class="tag">ICP Scoring</span>
+                </div>
+              </div>
 
-        <!-- PROJECT 4: Kitchi -->
-        <div class="project-card">
-          <div class="project-top">
-            <span class="project-title">Kitchi — Food Waste App</span>
-            <span class="project-status status-beta">testflight</span>
-          </div>
-          <p class="project-desc">
-            iOS app that tracks your kitchen inventory, predicts expiration using USDA shelf life data, and surfaces recipes built around what's about to go bad. Built solo from zero to TestFlight. The average household wastes $1,500+ in food per year — Kitchi starts from what you already own.
-          </p>
-          <p class="project-what">
-            <strong>What's built:</strong> Receipt scan → pantry (Claude Haiku OCR) · USDA FoodKeeper shelf life DB (612 records) · Spoonacular recipe matching · household sharing with RLS-enforced data isolation · shopping list ↔ pantry sync · CO₂ + $ impact tracking
-          </p>
-          <div class="project-tags">
-            <span class="tag">Next.js 16</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">Supabase</span>
-            <span class="tag">Postgres + RLS</span>
-            <span class="tag">Claude Haiku</span>
-            <span class="tag">Vercel</span>
-            <span class="tag">iOS / WKWebView</span>
-          </div>
-          <div class="project-links">
-            <a class="project-link" href="https://github.com/mindofhenry/kitchi-overview" target="_blank">→ case study</a>
+              <div class="play-screenshot">
+                <img src="screenshots/newhire-n8n-portfolio screenshot.png" alt="n8n New Hire Signal Router — workflow canvas" loading="lazy" />
+              </div>
+
+              <div class="play-body">
+                <p class="play-section-label">The problem</p>
+                <p class="play-detail">
+                  Job change signals are one of the strongest buying triggers in B2B, but most teams either miss them or dump them into a spreadsheet. When a VP of Security starts at a new company, you have a 2-week window before they settle in. The signal needs to hit the right rep, in the right CRM, with enough context to act on immediately.
+                </p>
+
+                <p class="play-section-label">What's built</p>
+                <p class="play-detail">
+                  <strong>Ingest:</strong> Webhook endpoint accepts job change payloads from any source. Event-driven architecture, not polling. Source-agnostic: works with LinkedIn Sales Nav exports, Apollo alerts, or custom scrapers.
+                </p>
+                <p class="play-detail">
+                  <strong>Enrich:</strong> Apollo Organization Enrichment API adds employee count, industry, HQ location, and funding data to each signal. Turns a name + title into a scored, contextualized lead.
+                </p>
+                <p class="play-detail">
+                  <strong>Score:</strong> Custom ICP scoring engine in a Code node. Title seniority (10-40pts), company size (10-25pts), industry fit (10-20pts), previous company signal (15pts). Deterministic, explainable, adjustable.
+                </p>
+                <p class="play-detail">
+                  <strong>Route:</strong> Three-tier Switch node. Tier 1 (70+): creates lead in Salesforce + HubSpot, DMs the assigned rep directly in Slack with score breakdown and CRM link. Tier 2 (40-69): creates lead in Salesforce + HubSpot, assigns to an SDR via segment-based round robin. Tier 3 (&lt;40): HubSpot only for nurture. Dual-CRM write shows CRM-agnostic thinking. Create-or-Update prevents duplicates.
+                </p>
+
+                <p class="play-section-label">Pipeline</p>
+                <div class="play-flow">
+                  <span class="flow-step">Webhook</span>
+                  <span class="flow-arrow">→</span>
+                  <span class="flow-step">Apollo Enrich</span>
+                  <span class="flow-arrow">→</span>
+                  <span class="flow-step">ICP Score</span>
+                  <span class="flow-arrow">→</span>
+                  <div class="flow-branch">
+                    <span class="flow-branch-label">Tier 1 (70+)</span>
+                    <span class="flow-step">SFDC + HubSpot + Slack DM</span>
+                    <span class="flow-branch-label">Tier 2 (40-69)</span>
+                    <span class="flow-step">SFDC + HubSpot + Round Robin</span>
+                    <span class="flow-branch-label">Tier 3 (&lt;40)</span>
+                    <span class="flow-step">HubSpot nurture only</span>
+                  </div>
+                </div>
+
+                <p class="play-section-label">Slack DM output</p>
+                <p class="play-detail">
+                  Tier 1 signals DM the assigned rep directly with the contact name, new title, company, ICP score breakdown, and a link to the Salesforce record. No channel noise. The rep who owns the account gets the signal where they already work.
+                </p>
+              </div>
+
+            </div>
           </div>
         </div>
 
@@ -964,6 +1563,66 @@
     <p class="footer-text"><span>© 2026</span></p>
   </div>
 </footer>
+
+<!-- Lightbox overlay -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <img src="" alt="Screenshot preview" />
+</div>
+
+<script>
+function toggleBM(id) {
+  const mod = document.getElementById(id);
+  const content = mod.querySelector('.bm-content');
+  const group = mod.closest('.module-group');
+  if (mod.classList.contains('open')) {
+    content.style.maxHeight = '0';
+    mod.classList.remove('open');
+  } else {
+    group.querySelectorAll('.beacon-module.open').forEach(m => {
+      m.querySelector('.bm-content').style.maxHeight = '0';
+      m.classList.remove('open');
+    });
+    content.style.maxHeight = content.scrollHeight + 'px';
+    mod.classList.add('open');
+  }
+}
+
+function togglePlay(id) {
+  const play = document.getElementById(id);
+  const content = play.querySelector('.play-content');
+  if (play.classList.contains('open')) {
+    content.style.maxHeight = '0';
+    play.classList.remove('open');
+  } else {
+    document.querySelectorAll('.play.open').forEach(p => {
+      p.querySelector('.play-content').style.maxHeight = '0';
+      p.classList.remove('open');
+    });
+    content.style.maxHeight = content.scrollHeight + 'px';
+    play.classList.add('open');
+  }
+}
+
+function openLightbox(src) {
+  const overlay = document.getElementById('lightbox');
+  overlay.querySelector('img').src = src;
+  overlay.classList.add('active');
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+
+document.querySelectorAll('.play-screenshot img').forEach(function(img) {
+  img.addEventListener('click', function() {
+    openLightbox(this.src);
+  });
+});
+</script>
 
 </body>
 </html>
